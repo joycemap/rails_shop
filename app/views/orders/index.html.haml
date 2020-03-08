@@ -1,7 +1,10 @@
 =  stripe_javascript_tag
 %body
+%h1 Own a piece of luxury
 %div
-  %h1 Own a piece of luxury
+%img{:src => asset_path("bc28887cf47620b7a843a86f1c74d2b2--gold-rush-gold-gold.jpg")}/
+%br
+%div.some{ :style => "position: absolute; left: 400px; top: 80px;" }
   = form_tag({:controller => "orders", :action => "submit" }, {:id => 'order-details'}) do
     %input{id:'order-type', :type=>"hidden", :value=>"stripe", :name=>'orders[payment_gateway]'}
     .form_row
@@ -12,19 +15,13 @@
           %span{id: "radioButtonName#{product.id}"} #{product.name}
           %span{id: "radioButtonPrice#{product.id}", :'data-price' => "#{product.price_cents}"} #{humanized_money_with_symbol product.price}
         %br
-      %h4 
-      - @products_subscription.each do |product|
         %div
-          = radio_button_tag 'orders[product_id]', product.id, false
-          %span{id: "radioButtonName#{product.id}"} #{product.name}
-          %span{id: "radioButtonPrice#{product.id}", :'data-price' => "#{product.price_cents}"} #{humanized_money_with_symbol product.price}
-        %br
     %hr
     %h1 Payment Method
     .form_row
       %div
         = radio_button_tag 'payment-selection', 'stripe', true, onclick: "changeTab();"
-        %span Stripe
+        %span Credit Card
       %br
       %div
         = radio_button_tag 'payment-selection', 'cash', false, onclick: "changeTab();"
@@ -40,6 +37,7 @@
     %div{id:'tab-cash', class:'paymentSelectionTab'}
       %div{id: "submit-cash"}
     %br
+      = link_to 'Log out', destroy_user_session_url, :method => :delete
     %br
     %hr
 :javascript
@@ -109,6 +107,7 @@
 :css
   #card-element {
     width:500px;
+    
   }
   .paymentSelectionTab {
     display: none;
@@ -118,12 +117,13 @@
   }
 
   body {
-      background-color: gold;
+      background-color: #F8DE7E;
       font-family: cursive;
   }
    input[type=submit] {
-    width: 20em;  height: 2em;
+    width: 12em;  height: 2em;
     font-family: cursive;
+    font-size: 20px;
     color: antiquewhite;
     background-color: black;
     

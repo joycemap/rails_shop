@@ -1,14 +1,19 @@
 class OrdersController < ApplicationController
     
-    before_action :authenticate_user!
-    # before_action :prepare_new_order
+  before_action :authenticate_user!, only: [:submit]
     SUCCESS_MESSAGE = 'Thank you for your order.'
     FAILURE_MESSAGE = 'Oops something went wrong. Please call the administrator'
-    CASH_MESSAGE = 'Please call us at 888-888-888 to make alternate payment arrangements.'
+    CASH_MESSAGE = 'Please call us at 888-888-888 to pay by cash.'
+    
+    def landingpage
+      if user_signed_in?
+        redirect_to '/orders'
+      end
+    end
+    
     def index
       products = Product.all
       @products_purchase = products.where(stripe_plan_name:nil)
-      @products_subscription = products - @products_purchase
     
     puts ENV['STRIPE_SECRET_KEY']
 
