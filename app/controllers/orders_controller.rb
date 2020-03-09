@@ -1,13 +1,11 @@
 class OrdersController < ApplicationController
     
-  before_action :authenticate_user!, except: [:landingpage] 
+  before_action :authenticate_user!
     SUCCESS_MESSAGE = 'Thank you for your order.'
-    FAILURE_MESSAGE = 'Oops something went wrong. Please call the administrator'
+    FAILURE_MESSAGE = 'Transaction unsuccessful. Please call your bank'
     CASH_MESSAGE = 'Please call us at 888-888-888 to pay by cash.'
     
-    def landingpage
-      
-    end
+
     
     def index
       products = Product.all
