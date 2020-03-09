@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+product1 = Product.new(name:  '22K Gold Toilet Paper, 25 sheets', price_cents: '120000');
+product1.save
