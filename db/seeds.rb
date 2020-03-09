@@ -7,3 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 product1 = Product.new(name:  '22K Gold Toilet Paper, 25 sheets', price_cents: '120000');
 product1.save
+product2 = Product.new(name:  '22K Gold Toilet Paper, 10 sheets', price_cents: '700');
+product2.save
